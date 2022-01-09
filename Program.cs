@@ -1,4 +1,6 @@
 ﻿using ImmutableRecord;
+using LambaExpression;
+
 class AnotherSampleClass
 {
     static public void Main(String[] args){
@@ -19,5 +21,23 @@ class AnotherSampleClass
         DataMeasurement dataMeasurement = new(DateTime.Now, 32.3);
         dataMeasurement.Measurement = 32323.32;
         Console.WriteLine(dataMeasurement);
+
+        // Lambda
+        Lambda lambda = new Lambda();
+        var game = new VariableCaptureGame();
+
+        int gameInput = 5;
+        game.Run(gameInput);
+
+        int jTry = 10;
+        bool result = game.isEqualToCapturedLocalVariable(jTry);
+        Console.WriteLine($"Captured local variable is equal to {jTry}: {result}");
+
+        int anotherJ = 3;
+        game.updateCapturedLocalVariable(anotherJ);
+
+        bool equalToAnother = game.isEqualToCapturedLocalVariable(anotherJ);
+        Console.WriteLine($"Another lambda observes a new value of captured variable: {equalToAnother}");
+        
     }
 }
